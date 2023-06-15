@@ -1,4 +1,25 @@
 :root {
   margin: none;
   padding: none;
+  --main-bg-color: #212121;
+  --secondary-bg-color: #323232;
+  --text-color: #0d7377;
+  --accent-color: #14ffec;
+}
+
+body {
+  background-color: var(--main-bg-color);
+  color: var(--text-color);
+}
+
+.btn {
+  padding: 0.5rem;
+  margin-left: 1rem;
+  background-color: var(--accent-color);
+  color: var(--main-bg-color);
+}
+
+input {
+  height: 1.8rem;
+  font-size: large;
 }
