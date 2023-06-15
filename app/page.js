@@ -12,9 +12,21 @@ const Home = () => {
   const api_key = process.env.OMDB_API_KEY;
 
   const [searchString, setSearchString] = useState("");
+  const [url, setUrl] = useState("");
 
-  const handleSearchInput = () => {
-    setSearchString();
+  const constructUrl = async (e) => {
+    console.log(process.env.OMDB_API_KEY);
+
+    e.preventDefault();
+    let formattedSearchString = searchString.split(" ").join("+");
+    console.log(formattedSearchString);
+    setUrl(
+      `https://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}&t=${formattedSearchString}&plot=full`
+    );
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(url);
+    console.log(data);
   };
 
   return (
@@ -26,9 +38,10 @@ const Home = () => {
           type="text"
           onChange={(e) => setSearchString(e.target.value)}
         ></input>
-        <button className="btn">Search</button>
+        <button className="btn" onClick={constructUrl}>
+          Search
+        </button>
       </form>
-      <h1>{searchString}</h1>
     </div>
   );
 };
